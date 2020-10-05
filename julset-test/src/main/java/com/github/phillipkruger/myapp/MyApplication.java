@@ -22,7 +22,6 @@ public class MyApplication {
         anotherClass.printSomeStuff();
     }
     
-    
     public static void main(String[] args) {
         MyApplication myApplication = new MyApplication();
         myApplication.printSomeStuff();

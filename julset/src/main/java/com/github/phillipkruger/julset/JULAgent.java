@@ -18,7 +18,15 @@ public class JULAgent {
     
     private static final String IDENTIFIER = "jul.";
     
+    public static void agentmain(String agentArgs, Instrumentation instrumentation) {
+        init(agentArgs, instrumentation);
+    }
+    
     public static void premain(String agentArgs, Instrumentation instrumentation) {
+        init(agentArgs, instrumentation);
+    }
+    
+    private static void init(String agentArgs, Instrumentation instrumentation){
         Properties properties = System.getProperties();
         for(Map.Entry<Object, Object> property:properties.entrySet()){
             String key = (String)property.getKey();
@@ -49,6 +57,7 @@ public class JULAgent {
         
         if(logger.getHandlers().length==0){
             logger.addHandler(new ConsoleHandler());
+            logger.setUseParentHandlers(false);
         }
         
         Handler[] handlers = logger.getHandlers();
